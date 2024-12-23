@@ -14,6 +14,34 @@ RELAX_VERSION="v1.0.0 (Alpha)"
 
 TEMPLATES_PATH = "./templates"
 
+MINIMAL_TEMPLATE = r"""
+\documentclass[a4paper,12pt]{article}
+
+% Additional packages you may need
+\usepackage[utf8]{inputenc}   % UTF-8 character encoding
+\usepackage{amsmath}          % Package for advanced mathematics
+\usepackage{graphicx}         % Package to insert images
+\usepackage{hyperref}         % For links in the document
+\usepackage{geometry}         % For adjusting margins
+
+% Adjusting margins
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+% Document title
+\title{My LaTeX Document}
+\author{Document Author}
+\date{\today}  % Current date
+
+\begin{document}
+
+% Print the title
+\maketitle
+
+\section{Introduction}
+
+\end{document}
+"""
+
 def get_template(template_name):
 	if os.path.exists(TEMPLATES_PATH):
 		template_path = os.path.join(TEMPLATES_PATH, f"{template_name}.tex")
@@ -44,7 +72,9 @@ def hello():
 @click.option('--template', help='Define the type of the template', type=str)
 @click.pass_context
 def generate(ctx, project, template):
-	if not os.path.exists(project):
+	if os.path.exists(project):
+		print(f"Error: The path '{project}' already exists.")
+	else:
 		mainfile_name = "main.tex"
 		mainfile_path = os.path.join(project, mainfile_name)
 		project_images_path = os.path.join(project, "img")
@@ -56,15 +86,17 @@ def generate(ctx, project, template):
 		os.makedirs(project_images_path, exist_ok=True)
 
 		try:
-			project_template = get_template(template)
+			if not template:
+				project_template = MINIMAL_TEMPLATE
+			else:
+				project_template = get_template(template)
 
 			with open(mainfile_path, "w") as mainfile:
 				mainfile.write(project_template)
 		except:
 			shutil.rmtree(project)
 			print("Error opening the template, try with another name")
-	else:
-		print(f"Error: The path '{project}' already exists.")
+		
 
 
 if __name__ == '__main__':
