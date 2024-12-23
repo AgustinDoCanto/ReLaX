@@ -1,6 +1,7 @@
 #!/bin/bash
 
 main(){
+	cd src
 	python -m venv venv
 	source venv/bin/activate
 	pip install -r requeriments.txt
@@ -10,7 +11,7 @@ main(){
 make_alias(){
 	CONFIG_FILE="$HOME/.bashrc"
 
-	ALIAS_COMMAND="alias relax='python relax.py'"
+	ALIAS_COMMAND="alias relax='python ./src/relax.py'"
 
 	if ! grep -Fxq "$ALIAS_COMMAND" "$CONFIG_FILE"; then
 	    echo "$ALIAS_COMMAND" >> "$CONFIG_FILE"

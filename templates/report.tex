@@ -1,0 +1,75 @@
+\documentclass[a4paper,12pt]{report} % Report class
+
+\usepackage[utf8]{inputenc}  % Support for UTF-8 characters
+\usepackage[T1]{fontenc}     % Output encoding for European characters
+\usepackage{graphicx}        % Allows the inclusion of images
+\usepackage{amsmath}         % Math packages
+\usepackage{geometry}        % Adjust page margins
+\usepackage{lipsum}          % Generate placeholder text (optional)
+
+% Page margin settings
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    {\Huge\bfseries Report Title \par}
+    \vspace{2cm}
+    {\Large Author: Your Name \par}
+    \vspace{1.5cm}
+    {\large Date: \today \par}
+    \vfill
+    {\large University or Institution \par}
+\end{titlepage}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Section 1
+\chapter{Introduction}
+In this section, you can introduce the topic of the report. Include context, objectives, and what the reader can expect.
+
+% Section 2
+\chapter{Methodology}
+Describe the methods or procedures used. You can use numbered or bulleted lists to structure the information:
+\begin{itemize}
+    \item Step 1: Description of the first step.
+    \item Step 2: Description of the second step.
+\end{itemize}
+
+% Section 3
+\chapter{Results}
+Include figures, tables, or graphs to present your results.
+
+\section{Figure Example}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{path_to_image.png} % Replace with the path to your image
+    \caption{Description of the figure.}
+    \label{fig:example}
+\end{figure}
+
+\section{Table Example}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Column 1 & Column 2 & Column 3 \\
+        \hline
+        Data 1 & Data 2 & Data 3 \\
+        \hline
+        Data A & Data B & Data C \\
+        \hline
+    \end{tabular}
+    \caption{Description of the table.}
+    \label{tab:example}
+\end{table}
+
+% Section 4
+\chapter{Conclusion}
+Summarize the findings of the report and discuss potential future work.
+
+\end{document}
