@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import subprocess
 import shutil
@@ -31,18 +33,18 @@ def {component}(**kargs):
 		return component_py_code
 
 @click.group
-def relax():
+def relaxCLI():
 	pass
 
 """ Shows the current version and prints hellow world """
-@relax.command()
+@relaxCLI.command()
 def version():
 	print(RELAX_ASCII)
 	print(RELAX_VERSION)
 
 
 """ Generate components """
-@relax.command()
+@relaxCLI.command()
 @click.option('-c','--component', required=True, help='With a given name creates a new project to work in.', type=str)
 @click.pass_context
 def create(ctx, component):
@@ -64,7 +66,7 @@ def create(ctx, component):
 
 
 """ Creates New projects """
-@relax.command()
+@relaxCLI.command()
 @click.option('-p','--project', required=True, help='With a given name creates a new project to work in.', type=str)
 @click.option('-t','--template', help='Define the type of the template', type=str)
 @click.pass_context
@@ -114,7 +116,7 @@ def compile_with_pdflatex(tex_file, output_dir, clean):
 
 
 """ Uses pdflatex to compile the project into a pdf file """
-@relax.command()
+@relaxCLI.command()
 @click.option('-p','--project', required=True, help='Must be the name of a project', type=str)
 @click.option('-c', '--clean', help=r'Bool: Clean the "aux", "log", "out", "toc" files', type=bool)
 @click.pass_context
@@ -153,12 +155,10 @@ def build(ctx, project, clean):
 		else:
 			print(f"Error: main.py does not exist in {mainfile_path}")
 
-
-
-
-				
-
+def main():
+    # Llama a la CLI de click
+    relaxCLI()
 
 
 if __name__ == '__main__':
-	relax()
+	main()

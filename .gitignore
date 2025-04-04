@@ -1,2 +1,6 @@
 venv
 install.sh
+__pycache__
+dist/
+relax.egg-info
+venv
