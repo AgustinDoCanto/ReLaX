@@ -5,7 +5,7 @@ setup(
     version="0.0.2-alpha",
     author="Agustin Do Canto",
     author_email="docantocontacto@gmail.com",
-    description="ReLaX is a framework to manage TeX components in a more comfortable way",
+    description="ReLaX (Rendering Environment for LaTeX) is a rendering framework designed to automate the creation of documents using LaTeX-based templates.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     packages=find_packages(where="src"),
@@ -22,8 +22,8 @@ setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.9",
 )
