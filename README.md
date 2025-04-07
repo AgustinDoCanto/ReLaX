@@ -1,29 +1,19 @@
-# Relax
-ReLax is a LaTex framework in python to facilitate the creation of reports or pdf with LaTex 
+# ReLaX
+ 
+ReLaX (Rendering Enviroment for LaTeX) es un entorno de renderizado para LaTeX permitiendo la automatización de creación de documentos a través de plantillas.
 
-# How to install
+# Cómo instalarlo
 
-To install Relax run the following commands:
+Por el momento **ReLaX** solamente se puede instalar mediante un link editable
 
-```python
-pip install -r requriments.txt
-```
+## Instalar la librería editable
 
-Before that make sure you have the "pip" package management system from "python" successfully installed.
-
-This command should install the "click" package an another dependencies tha allows you the usage of "ReLax CLI"
-
-
-
-
-# Install editable library
-
-Crear una carpeta para el proyecto
+**Crear una carpeta para el proyecto:**
 
 ```bash
-mkdir <project_name>
+relax new -p <project_name>
 ``` 
-Crear un entorno virtual y activarlo
+**Crear un entorno virtual y activarlo:**
 
 ```bash
 python -m venv venv
@@ -32,9 +22,14 @@ source venb/bin/activate
 
 Instalar en modo editable la libreria a traves del apuntando a la carpeta con el proyecto Relax:
 
+```bash
+pip install -e <route_to_relax_library>
+```
+
+Para verificar la correcta instalación y funcionamiento puede correr el comando:
 
 ```bash
-pip install -e <route_to_relax_code>
+relax version
 ```
 
 # ReLaX commands
@@ -696,15 +691,121 @@ El mecanismo de macros de Jinja 2 permite recibir parámetros en su definición 
 relax create -c MacroWithParameters
 ```
 
+**MacroWithParameters.py**
+
+```python
+from RelaxCore import Component
+
+@Component(template="MacroWithParameters.tex")
+def MacroWithParameters(**kargs):
+	return kargs
+
+```
+
+**MacroWithParameters.tex**
+
+```LaTeX
+<$- macro ShowMessage(text) -$> % La macro ShowMessage muestra el texto recibido
+<< text >>
+<$- endmacro -$>
+
+<$- macro TextBold(text) -$>
+\textbf{<< text >>}
+<$- endmacro -$>
+```
+
+**NOTA:** Los guiones en las etiquetas sirven para eliminar el espacio que dejan en blanco al remplazar las tags por espacios en blanco, pero se puede prescindir de ellas.
+
+**main.py**
+
+```python
+from FirstExampleComponent.FirstExampleComponent import FirstExampleComponent
+from SecondExampleComponent.SecondExampleComponent import SecondExampleComponent
+from ImageComponent.ImageComponent import ImageComponent
+from MacroComponentExample.MacroComponentExample import MacroComponentExample
+from MacroWithParameters.MacroWithParameters import MacroWithParameters
+from RelaxCore import Component
 
 
+dictionary_of_includes = { 
+	'FirstExampleComponent' : FirstExampleComponent,
+	'SecondExampleComponent' : SecondExampleComponent, 
+	'ImageComponent' : ImageComponent,
+	'MacroComponentExample' : MacroComponentExample,
+	'MacroWithParameters' : MacroWithParameters
+}
+
+@Component(template="main.tex")
+def main(**kargs):
+	return dictionary_of_includes
+
+```
+
+**main.tex**
+
+```LaTeX
+<$ from "MacroWithParameters/MacroWithParameters.tex" import ShowMessage $>
+<$ from "MacroWithParameters/MacroWithParameters.tex" import TextBold $>
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} % Codificación UTF-8
+\usepackage[T1]{fontenc}    % Codificación de fuentes
+\usepackage{lipsum}         % Texto de relleno opcional
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Título del Documento}
+\author{Autor}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+<< ShowMessage("Este es un texto normal que se renderizará comunmente") >> % Pasamos el texto como parametro a ShowMessage
+
+\end{document}
+
+```
  
+El primer "ShowMessage" se encarga de mostrar "Este es un texto normal que se renderizará comunmente" pasado como parámetro a la macro, dentro del documento. 
+
+
+#### Interpolación de parametros y macros
+
+
+```LaTeX
+<$ from "MacroWithParameters/MacroWithParameters.tex" import ShowMessage $>
+<$ from "MacroWithParameters/MacroWithParameters.tex" import TextBold $>
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} % Codificación UTF-8
+\usepackage[T1]{fontenc}    % Codificación de fuentes
+\usepackage{lipsum}         % Texto de relleno opcional
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Título del Documento}
+\author{Autor}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+<< ShowMessage("Este es un texto que incluye el siguiente texto pero en negrita " ~ TextBold("Este es el texto que debe estar en negrita") ~ ", Aqui finalizamos la cadena") >> % Interpolamos el texto que recibe ShowMessage con TextBold
+
+\end{document}
+
+```
+ 
+En el segundo componente se logra algo similar, pero se interpola la llamada a la macro "TextBold" con la cual logramos renderizar texto en negrita dentro de texto normal, esto se puede generalizar para cualquier tipo de macro y cualquier parámetro del mismo. 
+
 ### Diferencias entre Macro Tags y Componentes ReLaX
 
+La principal diferencia entre las Macro Tags y los Componentes ReLaX es que los componentes son funciones python mientras que las Macros actuan de acuerdo al funcionamiento interno de Jinja 2, pero ambos poseen mecanismos similares, por lo que la interpolación de texto y parametros dentro y otras funcionalidades de las macros también son utilizables con los Componentes de ReLaX.
 
 
-
-
-
-
-Para profundizar sobre algunas características avanzadas de "Jinja 2" puede visitar la [documentación oficial](https://jinja.palletsprojects.com/en/stable/templates/) que detalla el sistema de herencia de plantillas y tags a profundidad. 
+Para profundizar sobre algunas características avanzadas de "Jinja 2" como herencia de plantillas o funcionamiento interno de macros, puede visitar la [documentación oficial](https://jinja.palletsprojects.com/en/stable/templates/) que detalla el sistema de herencia de plantillas y tags a profundidad. 

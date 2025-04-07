@@ -10,13 +10,14 @@ from RelaxCore import *
 from jinja2 import Environment, FileSystemLoader, Template
 
 
-RELAX_ASCII = """
------------------------
-▗▄▄▖ ▗▞▀▚▖▗▖▗▞▀▜▌▄   ▄ 
-▐▌ ▐▌▐▛▀▀▘▐▌▝▚▄▟▌ ▀▄▀  
-▐▛▀▚▖▝▚▄▄▖▐▌     ▄▀ ▀▄ 
-▐▌ ▐▌     ▐▙▄▄▖        
------------------------"""
+RELAX_ASCII = r"""----------------------------------
+   _____      _         __  __
+   |  _ \ ___| |    __ _\ \/ /
+   | |_) / _ \ |   / _` |\  / 
+   |  _ <  __/ |__| (_| |/  \ 
+   |_| \_\___|_____\__,_/_/\_\
+                              
+---------------------------------"""
 
 RELAX_VERSION="v0.0.2-Alpha"
 
@@ -41,6 +42,9 @@ def relaxCLI():
 def version():
 	print(RELAX_ASCII)
 	print(RELAX_VERSION)
+	print("Created by Agustin Do Canto")
+	print("---------------------------------")
+
 
 
 """ Generate components """
