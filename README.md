@@ -4,7 +4,7 @@ ReLaX (Rendering Enviroment for LaTeX) es un entorno de renderizado para LaTeX p
 
 # Cómo instalarlo
 
-Por el momento **ReLaX** solamente se puede instalar mediante un link editable
+Por el momento **ReLaX** solamente se puede instalar mediante un link editable (Linux o Sistemas Operativos tipo Unix)
 
 ## Instalar la librería editable
 
