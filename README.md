@@ -4,7 +4,9 @@ ReLaX (Rendering Enviroment for LaTeX) es un entorno de renderizado para LaTeX p
 
 ![relax-version-image.png](./img/relax-version.png)
 
-# Cómo instalarlo
+# Instalación
+
+## Local (enlace editable)
 
 Por el momento **ReLaX** solamente se puede instalar mediante un link editable (Linux o Sistemas Operativos tipo Unix)
 
@@ -33,6 +35,57 @@ Para verificar la correcta instalación y funcionamiento puede correr el comando
 ```bash
 relax version
 ```
+
+## Mediante Dockerfile
+
+Se provee un archivo Dockerfile que permite desplegar una version del ecosistema ReLaX con lo básico para el desarrollo:
+
+Para trabajar mediante contenedores primero se debe crear una carpeta donde se va realizar el proyecto con ReLaX:
+
+```bash
+mkdir <nombre_de_carpeta>
+```
+Posteriormente nos situamos dentro de la misma:
+
+```bash
+cd <nombre_de_carpeta>
+```
+
+**NOTA:** Para la siguiente sección es necesario tener instalado y corriendo correctamente el demonio de docker (en Linux) o docker-desktop abierto (en Windows).
+
+Copiamos dentro de la carpeta recientemente creada el archivo *Dockerfile* de este repositorio y posteriormente situados dentro de ese directorio realizamos el build del contenedor con:
+
+```bash
+docker build -t <nombre_del_contenedor> .
+```
+Una vez creado el contenedor podemos ejecutarlo en modo interactivo para empezar con el desarrollo del proyecto con:
+
+**En Linux:**
+
+```bash
+docker run -it --rm -v "$(pwd)":/<nombre_de_la_carpeta> <nombre_del_contenedor>
+```
+o tambien
+
+```bash
+docker run -it --rm -v $PWD:/relax-docker relax-local
+```
+
+**En Windows (Powershell)**
+
+```powershell
+docker run -it --rm -v ${PWD}:/<nombre_de_la_carpeta> <nombre_del_contenedor>
+```
+
+**En Git bash**
+
+```bash
+docker run -it --rm -v "$(pwd -W):/<nombre_de_la_carpeta>" <nombre_del_contenedor>
+```
+
+Esto correra una consola interactiva con el contenedor que te permitira crear directorios y utilizar ReLaX a través de la carpeta montada como volumen.
+
+Para salir de la misma simplemente escribe *exit*.
 
 # ReLaX commands
 
