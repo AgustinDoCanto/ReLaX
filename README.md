@@ -10,8 +10,6 @@ ReLaX (Rendering Enviroment for LaTeX) es un entorno de renderizado para LaTeX p
 
 Por el momento **ReLaX** solamente se puede instalar mediante un link editable (Linux o Sistemas Operativos tipo Unix)
 
-## Instalar la librería editable
-
 **Crear una carpeta para el proyecto:**
 
 ```bash
@@ -36,7 +34,7 @@ Para verificar la correcta instalación y funcionamiento puede correr el comando
 relax version
 ```
 
-## Mediante Dockerfile
+## Mediante Dockerfile (Virtualizado)
 
 Se provee un archivo Dockerfile que permite desplegar una version del ecosistema ReLaX con lo básico para el desarrollo:
 
