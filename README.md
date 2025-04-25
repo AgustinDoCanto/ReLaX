@@ -34,6 +34,8 @@ Para verificar la correcta instalación y funcionamiento puede correr el comando
 relax version
 ```
 
+**NOTA:** Es importante contar con **pdflatex** instalado correctamente así como toda la paqueteria necesaria para compilar los archivos .tex de manera local. De otra forma puedes optar por la instalación **Mediante Dockerfile** que encapsula todos los recursos necesarios para un desarrollo de documentos básico, dentro de un contenedor.  
+
 ## Mediante Dockerfile (Virtualizado)
 
 Se provee un archivo Dockerfile que permite desplegar una version del ecosistema ReLaX con lo básico para el desarrollo:
