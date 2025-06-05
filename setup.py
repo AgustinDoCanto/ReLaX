@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="relax",
-    version="0.0.2-alpha",
+    name="doc-relax",
+    version="0.0.2a2",
     author="Agustin Do Canto",
     author_email="docantocontacto@gmail.com",
     description="ReLaX (Rendering Environment for LaTeX) is a rendering framework designed to automate the creation of documents using LaTeX-based templates.",
@@ -17,7 +17,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "relax=relax:main"
+            "relax=relax.relax:main"
         ]
     },
     classifiers=[

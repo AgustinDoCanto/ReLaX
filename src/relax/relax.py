@@ -7,7 +7,7 @@ import shutil
 import importlib.util
 import sys
 import click
-from RelaxCore import *
+from relax.RelaxCore.RelaxCore import *
 from jinja2 import Environment, FileSystemLoader, Template
 
 
@@ -20,7 +20,7 @@ RELAX_ASCII = r"""----------------------------------
                               
 ---------------------------------"""
 
-RELAX_VERSION="v0.0.2-Alpha"
+RELAX_VERSION="v0.0.2a2"
 
 def get_component_template(component, extension):
 	component_py_code = f"""from RelaxCore import Component
@@ -126,6 +126,10 @@ def compile_with_pdflatex(tex_file, output_dir, clean):
 @click.option('-c', '--clean', help=r'Bool: Clean the "aux", "log", "out", "toc" files', type=bool)
 @click.pass_context
 def build(ctx, project, clean):
+	if not check_pdflatex_installed():
+		print("Error: 'pdflatex' is not installed. Please install it to continue.")
+		sys.exit(1)
+
 	if not os.path.exists(project):
 		print(f"Error: The path '{project}' does not exist.")
 	else:
@@ -159,6 +163,14 @@ def build(ctx, project, clean):
 
 		else:
 			print(f"Error: main.py does not exist in {mainfile_path}")
+
+
+def check_pdflatex_installed():
+	try:
+		subprocess.run(["pdflatex", "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+		return True
+	except (subprocess.CalledProcessError, FileNotFoundError):
+		return False
 
 def main():
     # Llama a la CLI de click
