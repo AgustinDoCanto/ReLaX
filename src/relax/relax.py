@@ -9,6 +9,7 @@ import sys
 import click
 from relax.RelaxCore.RelaxCore import *
 from jinja2 import Environment, FileSystemLoader, Template
+from relax.__version__ import __version__ as RELAX_VERSION
 
 
 RELAX_ASCII = r"""----------------------------------
@@ -19,8 +20,6 @@ RELAX_ASCII = r"""----------------------------------
    |_| \_\___|_____\__,_/_/\_\
                               
 ---------------------------------"""
-
-RELAX_VERSION="v0.0.2a2"
 
 def get_component_template(component, extension):
 	component_py_code = f"""from RelaxCore import Component

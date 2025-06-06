@@ -1,8 +1,18 @@
 from setuptools import setup, find_packages
+import os
+import re
+
+def read_version():
+    version_file = os.path.join(os.path.dirname(__file__), "src/relax/", "__version__.py")
+    with open(version_file, encoding="utf-8") as f:
+        match = re.search(r'^__version__\s*=\s*["\'](.+?)["\']', f.read())
+        if match:
+            return match.group(1)
+        raise RuntimeError("No se pudo encontrar la versión.")
 
 setup(
     name="doc-relax",
-    version="0.0.2a2",
+    version=read_version(),
     author="Agustin Do Canto",
     author_email="docantocontacto@gmail.com",
     description="ReLaX (Rendering Environment for LaTeX) is a rendering framework designed to automate the creation of documents using LaTeX-based templates.",

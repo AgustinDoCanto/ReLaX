@@ -6,26 +6,27 @@ ReLaX (Rendering Enviroment for LaTeX) es un entorno de renderizado para LaTeX p
 
 # Instalación
 
-## Local (enlace editable)
+## Mediante PyPi (pip)
 
-Por el momento **ReLaX** solamente se puede instalar mediante un link editable (Linux o Sistemas Operativos tipo Unix)
+Para instalar **ReLaX** mediante los repositorios de PyPi (pip) puedes seguir los siguientes pasos:
 
 **Crear una carpeta para el proyecto:**
 
 ```bash
-relax new -p <project_name>
+mkdir <project_name>
+cd <project_name>
 ``` 
 **Crear un entorno virtual y activarlo:**
 
 ```bash
 python -m venv venv
-source venb/bin/activate
+source venv/bin/activate
 ```
 
-Instalar en modo editable la libreria a traves del apuntando a la carpeta con el proyecto Relax:
+**Instalar mediante *pip* la libreria:**
 
 ```bash
-pip install -e <route_to_relax_library>
+pip install doc-relax
 ```
 
 Para verificar la correcta instalación y funcionamiento puede correr el comando:
@@ -33,6 +34,7 @@ Para verificar la correcta instalación y funcionamiento puede correr el comando
 ```bash
 relax version
 ```
+
 
 **NOTA:** Es importante contar con **pdflatex** instalado correctamente así como toda la paqueteria necesaria para compilar los archivos .tex de manera local. De otra forma puedes optar por la instalación **Mediante Dockerfile** que encapsula todos los recursos necesarios para un desarrollo de documentos básico, dentro de un contenedor.  
 
