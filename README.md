@@ -207,7 +207,6 @@ Y el archivo main asi (ya que aun no incluimos el componente)
 **main.py**
 
 ```python
-from SectionComponent.SectionComponent import SectionComponent
 from RelaxCore import Component
 
 @Component(template="main.tex")
