@@ -2,7 +2,7 @@
  
 ReLaX (Rendering Enviroment for LaTeX) es un entorno de renderizado para LaTeX permitiendo la automatización de creación de documentos a través de plantillas.
 
-![relax-version-image.png](./img/relax-version.png)
+![relax-version-image.png](https://raw.githubusercontent.com/AgustinDoCanto/ReLaX/main/img/relax-version.png)
 
 # Instalación
 
