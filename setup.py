@@ -35,5 +35,11 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
     ],
+    url="https://github.com/AgustinDoCanto/ReLaX",
+    project_urls={
+        "Bug Tracker": "https://github.com/AgustinDoCanto/ReLaX/issues",
+        "Documentation": "https://github.com/AgustinDoCanto/ReLaX#readme",
+        "Source Code": "https://github.com/AgustinDoCanto/ReLaX",
+    },
     python_requires=">=3.9",
 )

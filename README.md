@@ -4,6 +4,10 @@ ReLaX (Rendering Enviroment for LaTeX) es un entorno de renderizado para LaTeX p
 
 ![relax-version-image.png](https://raw.githubusercontent.com/AgustinDoCanto/ReLaX/main/img/relax-version.png)
 
+**Código fuente:**
+
+[![GitHub](https://img.shields.io/badge/GitHub-ReLaX-blue?logo=github)](https://github.com/AgustinDoCanto/ReLaX)
+
 # Instalación
 
 ## Mediante PyPi (pip)
